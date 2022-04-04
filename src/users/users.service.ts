@@ -25,9 +25,9 @@ export class UsersService {
     return this.usersRepository.findOne(id);
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    const result = this.usersRepository.update(id, updateUserDto)
-    return `Se actualizó el usuario con el id ${id}`;
+  async update(id: number, updateUserDto: UpdateUserDto) {
+    const result = await this.usersRepository.update(id, updateUserDto)
+    return result;
   }
 
   remove(id: number) {
