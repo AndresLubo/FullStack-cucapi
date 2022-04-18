@@ -1,10 +1,14 @@
-import { Module } from '@nestjs/common';
+import {Module} from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import {TypeOrmModule} from "@nestjs/typeorm";
 import {User} from "./users/entities/user.entity";
 import {UsersService} from "./users/users.service";
+import { PostModule } from './post/post.module';
+import { PostCommentModule } from './post-comment/post-comment.module';
+import {PostComment} from "./post-comment/entities/post-comment.entity";
+import {Post} from "./post/entities/post.entity";
 
 @Module({
   imports: [UsersModule,
@@ -16,10 +20,12 @@ import {UsersService} from "./users/users.service";
         username: "postgres",
         password: "elpunknomuere1",
         database: "cucApi",
-        entities: [User],
+        entities: [User, Post, PostComment],
         synchronize: true,
       }
-  )],
+  ),
+  PostModule,
+  PostCommentModule],
   controllers: [AppController],
   providers: [AppService],
 })
